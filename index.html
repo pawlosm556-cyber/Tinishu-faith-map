@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="am">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ትንሹ የዕምነት ካርታ | Tinishu Faith Map</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@300;400;500;600&family=Noto+Sans+Ethiopic:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --bg-deep-wood: #1e140f;
+                --bg-warm-wood: #2c1d16;
+                --bg-parchment: #f9f6f0;
+                --bg-glass: rgba(44, 29, 22, 0.85);
+
+                --text-gold: #d4af37;
+                --text-gold-light: #f3dca3;
+                --text-light: #eaddcd;
+                --text-dark: #2c1d16;
+
+                --font-title: "Cinzel", serif;
+                --font-body: "Inter", sans-serif;
+                --font-geez: "Noto Sans Ethiopic", sans-serif;
+
+                --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: var(--bg-deep-wood);
+                color: var(--text-light);
+                font-family: var(--font-body);
+                line-height: 1.7;
+                overflow-x: hidden;
+                background-image:
+                    radial-gradient(
+                        circle at 50% 0%,
+                        rgba(212, 175, 55, 0.05) 0%,
+                        transparent 70%
+                    ),
+                    linear-gradient(to bottom, #1e140f, #120b08);
+            }
+
+            .ethiopic {
+                font-family: var(--font-geez);
+                font-size: 1.05em;
+                line-height: 1.9;
+            }
+
+            /* ==========================================================================
+           የላይኛው ማውጫ (Header & Logo)
+           ========================================================================== */
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: var(--bg-glass);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+                z-index: 1000;
+                transition: var(--transition-smooth);
+            }
+
+            .nav-wrapper {
+                max-width: 1300px;
+                margin: 0 auto;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                cursor: pointer;
+            }
+
+            /*
+           የሎጎው አዲስ እና ማራኪ ዲዛይን (Circular, Glowing, Professional)
+        */
+            .site-logo-img {
+                height: 55px; /* የሎጎው ቁመት */
+                width: 55px; /* የሎጎው ጎን - ክብ እንዲሆን ከቁመቱ ጋር እኩል መሆን አለበት */
+                object-fit: cover; /* ምስሉ ሳይበላሽ ከክቡ ጋር እንዲዋሃድ */
+                border-radius: 50%; /* ፍጹም ክብ (Circular) ያደርገዋል */
+                border: 2px solid var(--text-gold); /* ወርቃማ ክፈፍ */
+
+                /* የሚያበራ የብርሃን ስሜት (Glowing Effect) */
+                box-shadow:
+                    0 0 15px rgba(212, 175, 55, 0.5),
+                    0 0 30px rgba(212, 175, 55, 0.2);
+
+                background-color: var(--bg-warm-wood); /* የጀርባ ቀለም */
+                transition: var(--transition-smooth);
+            }
+
+            /* ማውዝ ሲያርፍበት ሎጎው የሚያሳየው ህያውነት */
+            .logo-container:hover .site-logo-img {
+                transform: scale(1.1) rotate(5deg); /* ትንሽ ከፍ ብሎ ይዞራል */
+                border-color: #fff; /* ክፈፉ ወደ ነጭ ያበራል */
+                box-shadow:
+                    0 0 25px rgba(212, 175, 55, 0.8),
+                    0 0 45px rgba(212, 175, 55, 0.5); /* ብርሃኑ ይጨምራል */
+            }
+
+            .logo-container h1 {
+                font-family: var(--font-title);
+                color: var(--text-gold);
+                font-size: 1.6rem;
+                letter-spacing: 1px;
+                text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+                transition: var(--transition-smooth);
+            }
+
+            .logo-container:hover h1 {
+                color: #fff;
+                text-shadow: 0 2px 15px rgba(255, 255, 255, 0.4);
+            }
+
+            .language-switcher {
+                display: flex;
+                gap: 10px;
+                background: rgba(0, 0, 0, 0.3);
+                padding: 5px;
+                border-radius: 30px;
+                border: 1px solid rgba(212, 175, 55, 0.2);
+            }
+
+            .lang-btn {
+                background: transparent;
+                color: var(--text-light);
+                border: none;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: var(--transition-smooth);
+            }
+
+            .lang-btn.active,
+            .lang-btn:hover {
+                background: var(--text-gold);
+                color: var(--bg-deep-wood);
+                box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            }
+
+            /* ==========================================================================
+           ዋናው ገጽ (Hero & Cards)
+           ========================================================================== */
+            .hero {
+                min-height: 85vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 0 20px;
+                margin-top: 60px;
+                position: relative;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 60vw;
+                height: 60vw;
+                background: radial-gradient(
+                    circle,
+                    rgba(212, 175, 55, 0.08) 0%,
+                    transparent 60%
+                );
+                z-index: -1;
+            }
+
+            .hero-content {
+                max-width: 800px;
+                animation: fadeIn 1.5s ease-out;
+            }
+
+            .hero-badge {
+                display: inline-block;
+                padding: 6px 16px;
+                background: rgba(212, 175, 55, 0.1);
+                border: 1px solid rgba(212, 175, 55, 0.3);
+                color: var(--text-gold-light);
+                border-radius: 30px;
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+                letter-spacing: 1px;
+            }
+
+            .hero h2 {
+                font-size: 3.5rem;
+                font-family: var(--font-title);
+                color: var(--text-gold);
+                margin-bottom: 25px;
+                line-height: 1.2;
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+                color: var(--text-light);
+                margin-bottom: 40px;
+                opacity: 0.9;
+            }
+
+            .cta-button {
+                background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+                color: var(--bg-deep-wood);
+                padding: 15px 35px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: var(--transition-smooth);
+                text-decoration: none;
+                display: inline-block;
+                box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            }
+
+            .cta-button:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+            }
+
+            .features-section {
+                max-width: 1300px;
+                margin: -50px auto 100px;
+                padding: 0 30px;
+                position: relative;
+                z-index: 10;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+
+            .card {
+                background: var(--bg-warm-wood);
+                border: 1px solid rgba(212, 175, 55, 0.15);
+                border-radius: 8px;
+                padding: 40px 30px;
+                text-align: left;
+                transition: var(--transition-smooth);
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+                box-shadow:
+                    inset 0 0 40px rgba(0, 0, 0, 0.5),
+                    0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+
+            .card::after {
+                content: "";
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                bottom: 5px;
+                left: 5px;
+                border: 1px solid rgba(212, 175, 55, 0.05);
+                border-radius: 4px;
+                pointer-events: none;
+            }
+
+            .card:hover {
+                transform: translateY(-10px);
+                border-color: rgba(212, 175, 55, 0.5);
+                box-shadow:
+                    inset 0 0 20px rgba(212, 175, 55, 0.05),
+                    0 20px 40px rgba(0, 0, 0, 0.6);
+            }
+
+            .card-icon {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                display: inline-block;
+                filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+            }
+
+            .card h3 {
+                font-size: 1.4rem;
+                color: var(--text-gold-light);
+                margin-bottom: 15px;
+                font-weight: 600;
+            }
+
+            .card p {
+                font-size: 0.95rem;
+                color: #b5a898;
+                margin-bottom: 25px;
+            }
+
+            .card-link {
+                color: var(--text-gold);
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: gap 0.3s ease;
+            }
+
+            .card:hover .card-link {
+                gap: 12px;
+            }
+
+            footer {
+                background: #110b08;
+                padding: 40px 20px;
+                text-align: center;
+                border-top: 1px solid rgba(212, 175, 55, 0.1);
+            }
+
+            .footer-text {
+                color: #8c7e71;
+                font-size: 0.9rem;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .hero h2 {
+                    font-size: 2.2rem;
+                }
+                .hero p {
+                    font-size: 1rem;
+                }
+                .nav-wrapper {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+                .logo-container {
+                    margin-bottom: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- የላይኛው ማውጫ -->
+        <header id="main-header">
+            <div class="nav-wrapper">
+                <!-- የሚያበራና ክብ የሆነው ሎጎ (pawlos.png) እዚህ ይገኛል -->
+                <div class="logo-container">
+                    <img src="pawlos.png" alt="የካርታ ሎጎ" class="site-logo-img" />
+                    <h1 id="ui-logo">ትንሹ የዕምነት ካርታ</h1>
+                </div>
+
+                <div class="language-switcher">
+                    <button
+                        class="lang-btn ethiopic active"
+                        onclick="changeLanguage('am')"
+                    >
+                        አማርኛ
+                    </button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">
+                        English
+                    </button>
+                    <button
+                        class="lang-btn ethiopic"
+                        onclick="changeLanguage('ti')"
+                    >
+                        ትግርኛ
+                    </button>
+                    <button class="lang-btn" onclick="changeLanguage('om')">
+                        Afaan Oromoo
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-badge" id="ui-badge"
+                    >በቀላሉ ይማሩ፣ በጥልቀት ያስተንትኑ</span
+                >
+                <h2 id="ui-title" class="ethiopic">ሰላም! እንኳን ወደ ቤቴ በደና መጡ😁</h2>
+                <p id="ui-subtitle" class="ethiopic">
+                    መጽሐፍ ቅዱስን፣ የጥንት አባቶች ትምህርትን እና ታሪካዊ መጻሕፍትን በቀላሉ፣ ልክ እንደ ቤተሰብ
+                    እናወራለን ነው ሀሳቤ ፥) ። ሁሉንም በአንድ ቦታ አዘጋጅቻለሁ።
+                </p>
+                <a href="home.html" class="cta-button ethiopic" id="ui-cta"
+                    >ጉዟችንን እንጀምር</a
+                >
+            </div>
+        </section>
+
+        <main class="features-section" id="explore">
+            <div class="grid-container">
+                <div class="card">
+                    <span class="card-icon">📖</span>
+                    <h3 id="card1-title" class="ethiopic">አብረን እናንብብ</h3>
+                    <p id="card1-desc" class="ethiopic">
+                        እንግሊዝኛ፣ አማርኛ፣ ትግርኛ እና አፋን ኦሮሞን ጎን ለጎን አድርገን፣ ቃላቱን
+                        እያነጻጸርን በቀላሉ መጽሐፍ ቅዱስን እናንብብ።
+                    </p>
+                    <a href="#" class="card-link"
+                        ><span id="card1-link" class="ethiopic">ማንበብ ጀምር</span>
+                        <span>→</span></a
+                    >
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">📜</span>
+                    <h3 id="card2-title" class="ethiopic">የቀደሙ አባቶች ምን አሉ?</h3>
+                    <p id="card2-desc" class="ethiopic">
+                        ለእያንዳንዱ የመጽሐፍ ቅዱስ ጥቅስ፣ የጥንት የቤተክርስቲያን አባቶች የሰጡትን ጣፋጭ
+                        ትምህርት እና ማብራሪያ ይወቁ።
+                    </p>
+                    <a href="#" class="card-link"
+                        ><span id="card2-link" class="ethiopic"
+                            >ትምህርቶችን እይ</span
+                        >
+                        <span>→</span></a
+                    >
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">🗝️</span>
+                    <h3 id="card3-title" class="ethiopic">የቃላት መፍቻ</h3>
+                    <p id="card3-desc" class="ethiopic">
+                        የቅዱሳት መጻህፍት ዋና የቃላት ትርጉሞች ማግኘት ትችላላችሁ
+                    </p>
+                    <a href="#" class="card-link"
+                        ><span id="card3-link" class="ethiopic">መዝገበ-ቃላት</span>
+                        <span>→</span></a
+                    >
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">🕯️</span>
+                    <h3 id="card4-title" class="ethiopic">የአበው መጽሀፍት</h3>
+                    <p id="card4-desc" class="ethiopic">
+                        ለማንበብ የሚያስደስቱ መንፈሳዊ መጻሕፍትን እና ታሪካዊ ጽሑፎችን ከቤታችሁ ሆናችሁ
+                    </p>
+                    <a href="#" class="card-link"
+                        ><span id="card4-link" class="ethiopic">መደብሩን ጎብኝ</span>
+                        <span>→</span></a
+                    >
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="footer-text ethiopic" id="ui-footer">
+                © 2018/26 ትንሹ የዕምነት ካርታ። የህጻናት መምህር!
+            </p>
+        </footer>
+
+        <script>
+            const translations = {
+                am: {
+                    logo: "ትንሹ የዕምነት ካርታ",
+                    badge: "በቀላሉ ይማሩ፣ በጥልቀት ያስተንትኑ",
+                    title: "ሰላም! እንኳን ወደ ትንሹ የዕምነት ካርታ በደህና መጡ።",
+                    subtitle:
+                        "መጽሐፍ ቅዱስን፣ የጥንት አባቶች ትምህርትን እና ታሪካዊ መጻሕፍትን በቀላሉ፣ ልክ እንደ ቤተሰብ እናወራለን ብለው ያስቡ። ሁሉንም በአንድ ቦታ አዘጋጅተንልዎታል።",
+                    cta: "ጉዟችንን እንጀምር",
+                    c1_title: "አብረን እናንብብ",
+                    c1_desc:
+                        "እንግሊዝኛ፣ አማርኛ፣ ትግርኛ እና አፋን ኦሮሞን ጎን ለጎን አድርገን፣ ቃላቱን እያነጻጸርን በቀላሉ መጽሐፍ ቅዱስን እናንብብ።",
+                    c1_link: "ማንበብ ጀምር",
+                    c2_title: "የቀደሙ አባቶች ምን አሉ?",
+                    c2_desc:
+                        "ለእያንዳንዱ የመጽሐፍ ቅዱስ ጥቅስ፣ የጥንት የቤተክርስቲያን አባቶች የሰጡትን ጣፋጭ ትምህርት እና ማብራሪያ ይወቁ።",
+                    c2_link: "ትምህርቶችን እይ",
+                    c3_title: "የቃላት መፍቻ",
+                    c3_desc:
+                        "አንድ ቃል ግሪክ ወይም ዕብራይስጥ ላይ ምን ማለት እንደሆነ ማወቅ ይፈልጋሉ? ቃሉን ነካ አድርገው ትርጉሙን በቀላሉ ያግኙ።",
+                    c3_link: "መዝገበ-ቃላት ክፈት",
+                    c4_title: "የመጻሕፍት መደብራችን",
+                    c4_desc:
+                        "ለማንበብ የሚያስደስቱ መንፈሳዊ መጻሕፍትን እና ታሪካዊ ጽሑፎችን ከቤታችን መደብር ይውሰዱ።",
+                    c4_link: "መደብሩን ጎብኝ",
+                    footer: "© 2026 ትንሹ የዕምነት ካርታ። በታላቅ ፍቅር የተሰራ።",
+                    fontClass: "ethiopic",
+                },
+                en: {
+                    logo: "Tinishu Faith Map",
+                    badge: "Learn Simply, Dive Deeply",
+                    title: "Hello! Welcome to Tinishu Faith Map.",
+                    subtitle:
+                        "Think of studying the Bible, ancient fathers' teachings, and historical texts as a simple conversation with a friend. We've gathered it all in one warm place for you.",
+                    cta: "Let's Begin the Journey",
+                    c1_title: "Let's Read Together",
+                    c1_desc:
+                        "Place English, Amharic, Tigrinya, and Afaan Oromo side-by-side. Compare the beautiful words and read the Bible easily.",
+                    c1_link: "Start Reading",
+                    c2_title: "What Did the Early Fathers Say?",
+                    c2_desc:
+                        "For every single Bible verse, discover the sweet, rich teachings and explanations left by the early church fathers.",
+                    c2_link: "See Teachings",
+                    c3_title: "Word Finder",
+                    c3_desc:
+                        "Want to know what a word actually meant in Greek or Hebrew? Just tap it to reveal its deep meaning simply.",
+                    c3_link: "Open Dictionary",
+                    c4_title: "Our Bookstore",
+                    c4_desc:
+                        "Pick up beautiful spiritual books and historical manuscripts to read from our cozy online bookstore.",
+                    c4_link: "Visit Store",
+                    footer: "© 2026 Tinishu Faith Map. childs teacher!.",
+                    fontClass: "",
+                },
+                ti: {
+                    logo: "ንእሽቶ ካርታ እምነት",
+                    badge: "ብቐሊሉ ተምሃሩ፣ ብዕምቈት ኣስተንትኑ",
+                    title: "ሰላም! ናብ ንእሽቶ ካርታ እምነት ብደሓን መጻእኩም።",
+                    subtitle:
+                        "መጽሓፍ ቅዱስን ናይ ቀዳሞት ኣቦታት ትምህርትን ብቐሊሉ፡ ልክዕ ከም ምስ ስድራቤት እንዕልሎ ጌርኩም ሕሰብዎ። ኩሉ ኣብ ሓደ ቦታ ኣዳሊናልኩም ኣለና።",
+                    cta: "ጉዕዞና ንጀምር",
+                    c1_title: "ብሓባር ነንብብ",
+                    c1_desc:
+                        "እንግሊዝኛ፣ አማርኛ፣ ትግርኛን ኣፋን ኦሮሞን ጎን ንጎን ጌርና፡ ነቲ ቃላት እናነጻጸርና ብቐሊሉ መጽሓፍ ቅዱስ ነንብብ።",
+                    c1_link: "ምንባብ ጀምር",
+                    c2_title: "ቀዳሞት ኣቦታት እንታይ በሉ?",
+                    c2_desc:
+                        "ንነፍሲ ወከፍ ጥቕሲ መጽሓፍ ቅዱስ፡ ናይ ቀዳሞት ኣቦታት ቤተክርስቲያን ዝሃብዎ ጥዑም ትምህርትን መብርህን ፍለጡ።",
+                    c2_link: "ትምህርትታት ርአ",
+                    c3_title: "መፍቲሒ ቃላት",
+                    c3_desc:
+                        "ሓደ ቃል ኣብ ግሪክ ወይ እብራይስጥ እንታይ ማለት ምዃኑ ክትፈልጡ ትደልዩ? ነቲ ቃል ተንኪፍኩም ትርጉሙ ብቐሊሉ ረክቡ።",
+                    c3_link: "መዝገበ-ቃላት ኽፈት",
+                    c4_title: "ድኳን መጻሕፍቲና",
+                    c4_desc: "ንምንባብ ዘሐጒሱ መንፈሳዊ መጻሕፍትን ታሪካዊ ጽሑፋትን ካብ ድኳንና ውሰዱ።",
+                    c4_link: "ድኳን ርአ",
+                    footer: "© 2026 ንእሽቶ ካርታ እምነት። ብዓቢ ፍቕሪ ዝተሰርሐ።",
+                    fontClass: "ethiopic",
+                },
+                om: {
+                    logo: "Kaarta Amantii Tinishuu",
+                    badge: "Salphaatti Baradhu, Gad Fageenyaan Yaadi",
+                    title: "Akkam! Baga gara Kaarta Amantii Tinishuu dhuftan.",
+                    subtitle:
+                        "Macaafa Qulqulluu fi barsiisa abbootii durii haala salphaa ta'een, akkuma maatii wajjin haasofnuutti yaadaa. Hunda isaa bakka tokkotti isiniif qopheessineerra.",
+                    cta: "Imala Keenya Haa Eegallu",
+                    c1_title: "Waliin Haa Dubbisnu",
+                    c1_desc:
+                        "Afaan Ingiliffaa, Amhariffaa, Tigriffaa fi Afaan Oromoo cinaa cinatti goonee, jechoota wal bira qabnee salphaatti haa dubbisnu.",
+                    c1_link: "Dubbisuu Eegali",
+                    c2_title: "Abbootiin Durii Maal Jedhan?",
+                    c2_desc:
+                        "Caqasa Macaafa Qulqulluu tokko tokkoof, barsiisa mi'aawaa fi ibsa abbootiin waldaa kristiyaanaa durii kennan argadhaa.",
+                    c2_link: "Barsiisa Daawwadhu",
+                    c3_title: "Hiika Jechootaa",
+                    c3_desc:
+                        "Jechotni tokko afaan Giriikii ykn Ibrootaan maal akka ta'e beekuu barbaadduu? Jechicha tuquun hiika isaa salphaatti argadhaa.",
+                    c3_link: "Galmee Jechoota Bani",
+                    c4_title: "Kuusaa Kitaaba Keenya",
+                    c4_desc:
+                        "Kitaabota hafuuraa fi barreeffamoota seenaa dubbisuuf namatti tolu kuusaa keenya irraa fudhadhaa.",
+                    c4_link: "Dukaana Daawwadhu",
+                    footer: "© 2026 Kaarta Amantii Tinishuu. Jaalala guddaan kan hojjetame.",
+                    fontClass: "",
+                },
+            };
+
+            function changeLanguage(langCode) {
+                const buttons = document.querySelectorAll(".lang-btn");
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                event.target.classList.add("active");
+
+                const data = translations[langCode];
+                const elementsToUpdate = [
+                    { id: "ui-logo", key: "logo" },
+                    { id: "ui-badge", key: "badge" },
+                    { id: "ui-title", key: "title" },
+                    { id: "ui-subtitle", key: "subtitle" },
+                    { id: "ui-cta", key: "cta" },
+                    { id: "card1-title", key: "c1_title" },
+                    { id: "card1-desc", key: "c1_desc" },
+                    { id: "card1-link", key: "c1_link" },
+                    { id: "card2-title", key: "c2_title" },
+                    { id: "card2-desc", key: "c2_desc" },
+                    { id: "card2-link", key: "c2_link" },
+                    { id: "card3-title", key: "c3_title" },
+                    { id: "card3-desc", key: "c3_desc" },
+                    { id: "card3-link", key: "c3_link" },
+                    { id: "card4-title", key: "c4_title" },
+                    { id: "card4-desc", key: "c4_desc" },
+                    { id: "card4-link", key: "c4_link" },
+                    { id: "ui-footer", key: "footer" },
+                ];
+
+                elementsToUpdate.forEach((item) => {
+                    const el = document.getElementById(item.id);
+                    if (el) {
+                        el.style.opacity = "0";
+                        setTimeout(() => {
+                            el.innerText = data[item.key];
+                            if (data.fontClass) {
+                                el.classList.add("ethiopic");
+                            } else {
+                                el.classList.remove("ethiopic");
+                            }
+                            el.style.opacity = "1";
+                            el.style.transition = "opacity 0.4s ease-in";
+                        }, 200);
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", () => {
+                const header = document.getElementById("main-header");
+                if (window.scrollY > 50) {
+                    header.style.background = "rgba(30, 20, 15, 0.95)";
+                    header.style.boxShadow = "0 4px 20px rgba(0,0,0,0.5)";
+                } else {
+                    header.style.background = "rgba(44, 29, 22, 0.85)";
+                    header.style.boxShadow = "none";
+                }
+            });
+        </script>
+    </body>
+</html>

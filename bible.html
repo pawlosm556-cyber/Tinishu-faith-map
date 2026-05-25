@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="am">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>መጽሐፍ ቅዱስ | ትንሹ የዕምነት ካርታ (Local Engine)</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght=500;700&family=Inter:wght=300;400;500;600&family=Noto+Sans+Ethiopic:wght=300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --bg-deep-wood: #130b08;
+                --bg-warm-wood: #1e140f;
+                --bg-card-wood: #261a13;
+                --bg-glass: rgba(30, 20, 15, 0.85);
+                --text-gold: #d4af37;
+                --text-gold-light: #f3dca3;
+                --text-light: #eaddcd;
+                --text-muted: #a69585;
+                --font-title: "Cinzel", serif;
+                --font-body: "Inter", sans-serif;
+                --font-geez: "Noto Sans Ethiopic", sans-serif;
+                --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: var(--bg-deep-wood);
+                color: var(--text-light);
+                font-family: var(--font-body);
+                background-image:
+                    radial-gradient(
+                        circle at 50% 0%,
+                        rgba(212, 175, 55, 0.03) 0%,
+                        transparent 70%
+                    ),
+                    linear-gradient(to bottom, #130b08, #0a0503);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                padding-top: 80px;
+            }
+
+            .ethiopic {
+                font-family: var(--font-geez);
+            }
+
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: var(--bg-glass);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+                z-index: 1000;
+            }
+
+            .nav-wrapper {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 12px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+            }
+            .site-logo-img {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                border: 2px solid var(--text-gold);
+            }
+            .logo-container h1 {
+                font-family: var(--font-title);
+                color: var(--text-gold);
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+            .back-btn {
+                color: var(--text-gold-light);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: var(--transition-smooth);
+            }
+            .back-btn:hover {
+                color: #fff;
+                transform: translateX(-2px);
+            }
+
+            .control-panel {
+                background: var(--bg-card-wood);
+                border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+                padding: 15px 30px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            }
+
+            .control-wrapper {
+                max-width: 1300px;
+                margin: 0 auto;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+            }
+            .select-group {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .select-group label {
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            select {
+                background: #130b08;
+                color: var(--text-light);
+                border: 1px solid rgba(212, 175, 55, 0.3);
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-family: var(--font-geez), sans-serif;
+                outline: none;
+                cursor: pointer;
+                transition: var(--transition-smooth);
+                max-width: 320px;
+            }
+
+            select option {
+                color: var(--text-light);
+                background: #130b08;
+            }
+            select:focus {
+                border-color: var(--text-gold);
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            }
+
+            .action-btn {
+                background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+                color: var(--bg-deep-wood);
+                border: none;
+                padding: 9px 20px;
+                font-weight: 600;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                transition: var(--transition-smooth);
+            }
+            .action-btn:hover {
+                background: #fff;
+                box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            }
+
+            .bible-container {
+                flex: 1;
+                max-width: 1400px;
+                width: 100%;
+                margin: 30px auto;
+                padding: 0 30px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 25px;
+            }
+
+            .bible-panel {
+                background: linear-gradient(to bottom, #1e140f, #170e0a);
+                border: 1px solid rgba(212, 175, 55, 0.1);
+                border-radius: 8px;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+
+            .panel-header {
+                background: rgba(0, 0, 0, 0.2);
+                padding: 12px 20px;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .panel-title {
+                font-family: var(--font-title);
+                color: var(--text-gold);
+                font-size: 1rem;
+            }
+            .close-panel-btn {
+                background: transparent;
+                border: none;
+                color: var(--text-muted);
+                cursor: pointer;
+                font-size: 1rem;
+                transition: var(--transition-smooth);
+            }
+            .close-panel-btn:hover {
+                color: #ef4444;
+            }
+
+            .panel-content {
+                padding: 25px;
+                overflow-y: auto;
+                max-height: 65vh;
+                font-size: 1.15rem;
+                line-height: 1.8;
+                text-align: justify;
+            }
+            .verse {
+                margin-bottom: 14px;
+                display: inline-block;
+                width: 100%;
+            }
+
+            .verse-num {
+                color: var(--text-gold);
+                font-weight: 700;
+                font-size: 0.85rem;
+                vertical-align: super;
+                margin-right: 6px;
+                display: inline-block;
+                min-width: 20px;
+                text-align: center;
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 3px;
+                padding: 1px 3px;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .loading-placeholder {
+                text-align: center;
+                color: var(--text-muted);
+                padding: 40px;
+                font-style: italic;
+            }
+            footer {
+                background: #0a0503;
+                padding: 20px;
+                text-align: center;
+                border-top: 1px solid rgba(212, 175, 55, 0.08);
+                margin-top: auto;
+            }
+
+            @media (max-width: 768px) {
+                .control-wrapper {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+                select {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="nav-wrapper">
+                <a href="services.html" class="logo-container">
+                    <img src="pawlos.png" alt="Logo" class="site-logo-img" />
+                    <h1 class="ethiopic">ትንሹ የዕምነት ካርታ</h1>
+                </a>
+                <a href="services.html" class="back-btn ethiopic"
+                    >← ወደ አገልግሎቶች ተመለስ</a
+                >
+            </div>
+        </header>
+
+        <section class="control-panel">
+            <div class="control-wrapper">
+                <div class="select-group">
+                    <label class="ethiopic">መጽሐፍ:</label>
+                    <select
+                        id="book-select"
+                        onchange="updateChapters()"
+                    ></select>
+                </div>
+
+                <div class="select-group">
+                    <label class="ethiopic">ምዕራፍ:</label>
+                    <select id="chapter-select"></select>
+                </div>
+
+                <button
+                    class="action-btn ethiopic"
+                    onclick="addParallelPanel()"
+                >
+                    ንባቡን አውጣ +
+                </button>
+            </div>
+        </section>
+
+        <main class="bible-container" id="workspace-grid"></main>
+
+        <footer>
+            <p style="color: #594f45; font-size: 0.85rem" class="ethiopic">
+                © 2026 ትንሹ የዕምነት ካርታ። በታላቅ ፍቅር የተሰራ።
+            </p>
+        </footer>
+
+        <script>
+            let bibleDatabase = null;
+
+            // የJSON ፋይሉን በጥንቃቄ የማንበቢያ ሞተር
+            async function loadBibleJSON() {
+                try {
+                    const response = await fetch("amharic_bible.json");
+                    if (!response.ok) throw new Error("JSON ፋይሉን ማግኘት አልተቻለም።");
+
+                    bibleDatabase = await response.json();
+                    console.log("ፋይሉ በትክክል ተጭኗል፦", bibleDatabase); // ለመፈተሽ ይረዳናል
+
+                    const bookSelect = document.getElementById("book-select");
+                    bookSelect.innerHTML = "";
+
+                    if (bibleDatabase && bibleDatabase.books) {
+                        bibleDatabase.books.forEach((book, index) => {
+                            let opt = document.createElement("option");
+                            opt.value = index;
+                            opt.innerText = book.title;
+                            bookSelect.appendChild(opt);
+                        });
+
+                        // መጻሕፍቱ እንደተጫኑ ምዕራፎቹን አድስ
+                        updateChapters();
+                        addParallelPanel();
+                    } else {
+                        throw new Error(
+                            "በJSON ፋይሉ ውስጥ 'books' የሚል ክፍል አልተገኘም።",
+                        );
+                    }
+                } catch (error) {
+                    console.error("የመጫን ስህተት፦", error);
+                    document.getElementById("workspace-grid").innerHTML = `
+                        <div class="loading-placeholder" style="color: #ef4444; font-weight: bold;">
+                            ⚠️ ስህተት ተከስቷል፦ ${error.message}<br>
+                            <span style="font-size: 0.9rem; color: #a69585;">ማሳሰቢያ፦ ፋይሉን በ Live Server (Local Server) መክፈትዎን ያረጋግጡ።</span>
+                        </div>`;
+                }
+            }
+
+            // በተመረጠው መጽሐፍ ልክ የምዕራፍ ቁጥሮችን ማደሻ
+            function updateChapters() {
+                if (!bibleDatabase) return;
+
+                const bookIndex = document.getElementById("book-select").value;
+                const chapterSelect = document.getElementById("chapter-select");
+                chapterSelect.innerHTML = "";
+
+                const targetBook = bibleDatabase.books[bookIndex];
+                if (targetBook && targetBook.chapters) {
+                    targetBook.chapters.forEach((chap) => {
+                        let opt = document.createElement("option");
+                        // ምዕራፉ String ወይም Object ቢሆንም ቁጥሩን ብቻ ፈልጎ እንዲያወጣ
+                        const chapNum =
+                            typeof chap === "object" ? chap.chapter : chap;
+                        opt.value = chapNum;
+                        opt.innerText = "ምዕራፍ " + chapNum;
+                        chapterSelect.appendChild(opt);
+                    });
+                }
+            }
+
+            // ጥቅሶችን አውጥቶ በፓነል ላይ መደርደሪያ
+            function addParallelPanel() {
+                if (!bibleDatabase) return;
+
+                const bookIndex = document.getElementById("book-select").value;
+                const targetBook = bibleDatabase.books[bookIndex];
+                const bookName = targetBook.title;
+                const chapterNum =
+                    document.getElementById("chapter-select").value;
+
+                const grid = document.getElementById("workspace-grid");
+                const panelId = `panel-${bookIndex}-${chapterNum}-${Date.now()}`;
+
+                const panel = document.createElement("div");
+                panel.className = "bible-panel";
+                panel.id = panelId;
+                panel.innerHTML = `
+                    <div class="panel-header">
+                        <span class="panel-title">${bookName} - ምዕራፍ ${chapterNum}</span>
+                        <button class="close-panel-btn" onclick="document.getElementById('${panelId}').remove()">✕</button>
+                    </div>
+                    <div class="panel-content ethiopic" id="content-${panelId}"></div>
+                `;
+                grid.appendChild(panel);
+
+                const contentBox = document.getElementById(
+                    `content-${panelId}`,
+                );
+
+                // ምዕራፉን ፈልጎ ማውጫ
+                const targetChapter = targetBook.chapters.find(
+                    (c) =>
+                        (typeof c === "object" ? c.chapter : c) == chapterNum,
+                );
+
+                if (
+                    targetChapter &&
+                    targetChapter.verses &&
+                    targetChapter.verses.length > 0
+                ) {
+                    targetChapter.verses.forEach((verseText, index) => {
+                        const verseMarkup = document.createElement("span");
+                        verseMarkup.className = "verse";
+                        verseMarkup.innerHTML = `<span class="verse-num">${index + 1}</span>${verseText}`;
+                        contentBox.appendChild(verseMarkup);
+                    });
+                } else {
+                    contentBox.innerHTML = `<div class="loading-placeholder">በዚህ ምዕራፍ ውስጥ ምንም ጥቅስ አልተገኘም።</div>`;
+                }
+            }
+
+            window.onload = loadBibleJSON;
+        </script>
+    </body>
+</html>

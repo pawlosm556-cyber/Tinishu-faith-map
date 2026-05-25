@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="am">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>የመጽሐፍ ቅዱስ መዝገበ ቃላት | ትንሹ የዕምነት ካርታ</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght=500;700&family=Inter:wght=300;400;500;600&family=Noto+Sans+Ethiopic:wght=300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --bg-deep-wood: #130b08;
+                --bg-warm-wood: #1e140f;
+                --bg-card-wood: #261a13;
+                --bg-glass: rgba(30, 20, 15, 0.85);
+                --text-gold: #d4af37;
+                --text-gold-light: #f3dca3;
+                --text-light: #eaddcd;
+                --text-muted: #a69585;
+                --font-title: "Cinzel", serif;
+                --font-body: "Inter", sans-serif;
+                --font-geez: "Noto Sans Ethiopic", sans-serif;
+                --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: var(--bg-deep-wood);
+                color: var(--text-light);
+                font-family: var(--font-body);
+                background-image:
+                    radial-gradient(
+                        circle at 50% 0%,
+                        rgba(212, 175, 55, 0.03) 0%,
+                        transparent 70%
+                    ),
+                    linear-gradient(to bottom, #130b08, #0a0503);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                padding-top: 80px;
+            }
+
+            .ethiopic {
+                font-family: var(--font-geez);
+            }
+
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: var(--bg-glass);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+                z-index: 1000;
+            }
+
+            .nav-wrapper {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 12px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+            }
+            .site-logo-img {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                border: 2px solid var(--text-gold);
+            }
+            .logo-container h1 {
+                font-family: var(--font-title);
+                color: var(--text-gold);
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+            .back-btn {
+                color: var(--text-gold-light);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: var(--transition-smooth);
+            }
+            .back-btn:hover {
+                color: #fff;
+                transform: translateX(-2px);
+            }
+
+            .main-content {
+                flex: 1;
+                max-width: 800px;
+                width: 100%;
+                margin: 40px auto;
+                padding: 0 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .page-title-section {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .page-title-section h2 {
+                font-family: var(--font-title);
+                color: var(--text-gold);
+                font-size: 2.2rem;
+                margin-bottom: 8px;
+            }
+            .page-title-section p {
+                color: var(--text-muted);
+                font-size: 0.95rem;
+            }
+
+            .search-box-container {
+                position: relative;
+                background: var(--bg-card-wood);
+                border: 1px solid rgba(212, 175, 55, 0.2);
+                border-radius: 8px;
+                padding: 6px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            }
+
+            .search-input {
+                width: 100%;
+                background: #130b08;
+                border: 1px solid transparent;
+                color: #fff;
+                padding: 16px 20px;
+                font-size: 1.1rem;
+                border-radius: 6px;
+                outline: none;
+                transition: var(--transition-smooth);
+            }
+            .search-input:focus {
+                border-color: var(--text-gold);
+                box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+            }
+
+            .result-container {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .word-card {
+                background: linear-gradient(to bottom, #1e140f, #170e0a);
+                border: 1px solid rgba(212, 175, 55, 0.15);
+                border-radius: 8px;
+                padding: 25px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                transition: var(--transition-smooth);
+                animation: fadeIn 0.3s ease-out;
+            }
+            .word-card:hover {
+                border-color: var(--text-gold);
+                transform: translateY(-2px);
+            }
+
+            .word-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+            .word-title {
+                font-size: 1.8rem;
+                color: var(--text-gold);
+                font-weight: 600;
+                font-family: "Times New Roman", serif;
+            }
+            .word-translit {
+                color: var(--text-gold-light);
+                font-style: italic;
+                font-size: 1rem;
+            }
+
+            .meta-info {
+                display: flex;
+                gap: 15px;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-bottom: 15px;
+                background: rgba(0, 0, 0, 0.15);
+                padding: 5px 10px;
+                border-radius: 4px;
+                display: inline-flex;
+            }
+            .meta-info span strong {
+                color: var(--text-gold-light);
+            }
+
+            .word-definition {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: var(--text-light);
+                text-align: justify;
+            }
+
+            .message-box {
+                text-align: center;
+                color: var(--text-muted);
+                padding: 40px;
+                font-style: italic;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            footer {
+                background: #0a0503;
+                padding: 20px;
+                text-align: center;
+                border-top: 1px solid rgba(212, 175, 55, 0.08);
+                margin-top: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo-container">
+                    <img src="pawlos.png" alt="Logo" class="site-logo-img" />
+                    <h1 class="ethiopic">ትንሹ የዕምነት ካርታ</h1>
+                </a>
+                <a href="index.html" class="back-btn ethiopic"
+                    >← ወደ መጽሐፍ ቅዱስ ንባብ</a
+                >
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-title-section">
+                <h2 class="ethiopic">የመጽሐፍ ቅዱስ መዝገበ ቃላት</h2>
+                <p class="ethiopic">
+                    የግሪክ ቃላትን በTransliteration እና በትርጉም መፈለጊያ
+                </p>
+            </div>
+
+            <div class="search-box-container">
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input ethiopic"
+                    placeholder="ቃሉን ወይም ትርጉሙን እዚህ ይጻፉ... (ለምሳሌ: abba, Aaron, ἀβαρής)"
+                    oninput="searchWord()"
+                />
+            </div>
+
+            <div id="result-area" class="result-container">
+                <div class="message-box ethiopic">
+                    ለመጀመር የሚፈልጉትን ቃል ከላይ ይተይቡ።
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p style="color: #594f45; font-size: 0.85rem" class="ethiopic">
+                © 2026 ትንሹ የዕምነት ካርታ። በታላቅ ፍቅር የተሰራ።
+            </p>
+        </footer>
+
+        <script>
+            let dictionaryDatabase = null;
+
+            // የአንተን ልዩ JSON ፋይል በቀጥታ የሚያነብ ሞተር
+            async function loadDictionaryJSON() {
+                try {
+                    const response = await fetch("dictionary.json");
+                    if (!response.ok)
+                        throw new Error("dictionary.json ፋይሉን ማግኘት አልተቻለም።");
+
+                    // ፋይሉ ቀጥታ የቃላት ስብስብ (Object) ስለሆነ መዋቅሩን እንዲህ እንይዛለን
+                    dictionaryDatabase = await response.json();
+                    console.log(
+                        "መዝገበ ቃላቱ በትክክል ተጭኗል! የቃላት ብዛት፦",
+                        Object.keys(dictionaryDatabase).length,
+                    );
+                } catch (error) {
+                    console.error("Error loading dictionary:", error);
+                    document.getElementById("result-area").innerHTML = `
+                        <div class="message-box ethiopic" style="color: #ef4444; font-weight: bold;">
+                            ⚠️ ስህተት፡ 'dictionary.json' ፋይል መጫን አልተቻለም።<br>
+                            <span style="font-size: 0.85rem; color: #a69585;">ፋይሉ ከ index.html ጋር በአንድ ፎልደር ውስጥ መኖሩንና በ Live Server መከፈቱን ያረጋግጡ።</span>
+                        </div>`;
+                }
+            }
+
+            // የፍለጋ ሞተር
+            function searchWord() {
+                const query = document
+                    .getElementById("search-input")
+                    .value.trim()
+                    .toLowerCase();
+                const resultArea = document.getElementById("result-area");
+
+                if (query === "") {
+                    resultArea.innerHTML =
+                        '<div class="message-box ethiopic">ለመጀመር የሚፈልጉትን ቃል ከላይ ይተይቡ።</div>';
+                    return;
+                }
+
+                if (!dictionaryDatabase) return;
+
+                resultArea.innerHTML = "";
+                let foundCount = 0;
+                const maxResults = 30; // ገጹ እንዳይጨናነቅ ከፍተኛ የውጤት ብዛት መወሰን
+
+                for (const [key, info] of Object.entries(dictionaryDatabase)) {
+                    const lemma = info.lemma ? info.lemma.toLowerCase() : "";
+                    const translit = info.transliteration
+                        ? info.transliteration.toLowerCase()
+                        : "";
+                    const definition = info.definition
+                        ? info.definition.toLowerCase()
+                        : "";
+
+                    // ፍለጋው በቁልፍ ቃል፣ በግሪክ ፊደል፣ በTransliteration ወይም በትርጉም ውስጥ ከተገኘ
+                    if (
+                        key.toLowerCase().includes(query) ||
+                        lemma.includes(query) ||
+                        translit.includes(query) ||
+                        definition.includes(query)
+                    ) {
+                        foundCount++;
+
+                        const card = document.createElement("div");
+                        card.className = "word-card";
+
+                        // ስትሮንግ ቁጥር (Strongs Number) እና ድግግሞሽ (Frequency) ካለ ለማሳየት
+                        const strongsNum = info.strongs
+                            ? info.strongs.join(", ")
+                            : "N/A";
+                        const freq =
+                            info.frequencyCount !== undefined
+                                ? info.frequencyCount
+                                : "N/A";
+
+                        card.innerHTML = `
+                            <div class="word-header">
+                                <span class="word-title">${info.lemma || key}</span>
+                                <span class="word-translit">[${info.transliteration || ""}]</span>
+                            </div>
+                            <div class="meta-info">
+                                <span>Strong's: <strong>#${strongsNum}</strong></span>
+                                <span>Frequency: <strong>${freq} times</strong></span>
+                            </div>
+                            <div class="word-definition">${info.definition}</div>
+                        `;
+                        resultArea.appendChild(card);
+
+                        // ከተወሰነው ከፍተኛ ውጤት በላይ ከሆነ ፍለጋውን ማቆም (ለፍጥነት ሲባል)
+                        if (foundCount >= maxResults) {
+                            const note = document.createElement("div");
+                            note.className = "message-box ethiopic";
+                            note.style.fontSize = "0.9rem";
+                            note.innerHTML = `ከ ${maxResults} በላይ ውጤቶች ተገኝተዋል። እባክህ ፍለጋህን ይበልጥ አጥብበው።`;
+                            resultArea.appendChild(note);
+                            break;
+                        }
+                    }
+                }
+
+                if (foundCount === 0) {
+                    resultArea.innerHTML = `<div class="message-box ethiopic">"<strong>${query}</strong>" የሚል ቃል ወይም ትርጉም በመዝገበ ቃላቱ ውስጥ አልተገኘም።</div>`;
+                }
+            }
+
+            window.onload = loadDictionaryJSON;
+        </script>
+    </body>
+</html>
