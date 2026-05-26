@@ -404,7 +404,6 @@
         </style>
     </head>
     <body>
-        <!-- የላይኛው ማውጫ እና የቋንቋ ምርጫ -->
         <header>
             <div class="nav-wrapper">
                 <a href="index.html" class="logo-container">
@@ -441,7 +440,6 @@
             >
         </div>
 
-        <!-- የገጹ መግቢያ -->
         <div class="page-intro">
             <h2 id="ui-page-title" class="ethiopic">የአገልግሎቶች ማውጫ</h2>
             <p id="ui-page-desc" class="ethiopic">
@@ -449,10 +447,9 @@
             </p>
         </div>
 
-        <!-- አገልግሎቶች ማውጫ መድረክ -->
         <main class="services-grid-section">
             <div class="dashboard-grid">
-                <!-- 1. መጽሐፍ ቅዱስ ንባብ ክፍል -->
+                
                 <div class="service-card">
                     <div>
                         <div class="card-top">
@@ -468,7 +465,7 @@
                             </div>
                         </div>
                         <div class="service-meta" id="srv1-meta">
-                            <span class="meta-item ethiopic">4 ቋንቋዎች(demo 1)</span>
+                            <span class="meta-item ethiopic">4 ቋንቋዎች</span>
                             <span class="meta-item ethiopic">የንጽጽር ጥናት</span>
                         </div>
                     </div>
@@ -482,7 +479,34 @@
                     </div>
                 </div>
 
-                <!-- 2. የአባቶች ትምህርት ክፍል -->
+                <div class="service-card">
+                    <div>
+                        <div class="card-top">
+                            <div class="icon-box">🕌</div>
+                            <div class="card-details">
+                                <h3 id="srv5-title" class="ethiopic">
+                                    ቁርኣን (Quran Reading)
+                                </h3>
+                                <p id="srv5-desc" class="ethiopic">
+                                    የቁርኣን አንቀጾችን በአማርኛ፣ በአረብኛ እና በተለያዩ ትርጉሞች ለማንበብ።
+                                </p>
+                            </div>
+                        </div>
+                        <div class="service-meta" id="srv5-meta">
+                            <span class="meta-item ethiopic">አረብኛ እና አማርኛ</span>
+                            <span class="meta-item ethiopic">የትርጉም ንጽጽር</span>
+                        </div>
+                    </div>
+                    <div class="action-area">
+                        <a
+                            href="quran.html"
+                            class="enter-service-btn ethiopic"
+                            id="srv5-btn"
+                            >ወደ ቁርኣን ንባብ →</a
+                        >
+                    </div>
+                </div>
+
                 <div class="service-card">
                     <div>
                         <div class="card-top">
@@ -511,7 +535,6 @@
                     </div>
                 </div>
 
-                <!-- 3. የቃላት መፍቻ ክፍል -->
                 <div class="service-card">
                     <div>
                         <div class="card-top">
@@ -522,7 +545,7 @@
                                 </h3>
                                 <p id="srv3-desc" class="ethiopic">
                                     የቃላትን መነሻ ስርወ-ቃል (ግሪክና ዕብራይስጥ) እንዲሁም ጥልቅ
-                                    መንፈሳዊ ፍቺዎችን በቀላሉ ፈልገው የሚረዱበት መፈለጊያ( demo 2።
+                                    መንፈሳዊ ፍቺዎችን በቀላሉ ፈልገው የሚረዱበት መፈለጊያ።
                                 </p>
                             </div>
                         </div>
@@ -533,7 +556,7 @@
                     </div>
                     <div class="action-area">
                         <a
-                            href="lexicon.html"
+                            href="dictionary.html"
                             class="enter-service-btn ethiopic"
                             id="srv3-btn"
                             >መዝገበ-ቃላት →</a
@@ -541,7 +564,6 @@
                     </div>
                 </div>
 
-                <!-- 4. የመጻሕፍት መደብር ክፍል -->
                 <div class="service-card">
                     <div>
                         <div class="card-top">
@@ -581,29 +603,39 @@
         </footer>
 
         <script>
-            // የቀደመው የቋንቋ መቀያየሪያ ዳታና ሲስተም (የተስተካከለ)
+            // የቋንቋ መቀያየሪያ ዳታ (የቁርኣን ክፍል የተካተተበት)
             const translations = {
                 am: {
                     logo: "ትንሹ የዕምነት ካርታ",
                     back: "← ወደ ዋናው ገጽ ተመለስ",
                     pageTitle: "የአገልግሎቶች ማውጫ",
                     pageDesc: "ለመጠቀም የሚፈልጉትን ዋና ክፍል በመምረጥ በቀጥታ ወደ ተግባሩ ይግቡ።",
-                    s1_t: "አብረን እናንብብ (Parallel Bible)",
-                    s1_d: "አማርኛ፣ ግዕዝ翻 እንግሊዝኛና ሌሎች ቋንቋዎችን ጎን ለጎን በማነጻጸር ፍጹም የሆነ የንባብና የጥናት ጊዜ ያሳልፉ።",
+                    
+                    s1_t: "መጽሀፍቅዱስ (Parallel Bible)",
+                    s1_d: "አማርኛ ቅዱሳት መጻህፍትን ጎን ለጎን በማነጻጸር ለማንበብ።",
                     s1_m: "<span class='meta-item'>4 ቋንቋዎች</span><span class='meta-item'>የንጽጽር ጥናት</span>",
                     s1_b: "ወደ ንባብ ክፍል ግባ →",
+
+                    s5_t: "ቁርኣን (Quran Reading)",
+                    s5_d: "የቁርኣን አንቀጾችን በአማርኛ፣ በአረብኛ እና በተለያዩ ትርጉሞች ለማንበብ።",
+                    s5_m: "<span class='meta-item'>አረብኛ እና አማርኛ</span><span class='meta-item'>የትርጉም ንጽጽር</span>",
+                    s5_b: "ወደ ቁርኣን ንባብ →",
+                    
                     s2_t: "የቅዱሳን አባቶች ትምህርት (Patristics)",
-                    s2_d: "ጥንታውያን የቤተክርስቲያን ሊቃውንትና አባቶች ለእያንዳንዱ ጥቅስ የሰጡትን ጥልቅ ምስጢርና ትርጓሜ ዝርዝር የሚያገኙበት ክፍል።",
+                    s2_d: "coming soon",
                     s2_m: "<span class='meta-item'>የሊቃውንት ትርጓሜ</span><span class='meta-item'>የብራና ማህደር</span>",
                     s2_b: "ትምህርቶችን ክፈት →",
+                    
                     s3_t: "የቃላት መፍቻ (Lexicon Tool)",
-                    s3_d: "የቃላትን መነሻ翻 ስርወ-ቃል (ግሪክና ዕብራይስጥ) እንዲሁም ጥልቅ መንፈሳዊ ፍቺዎችን በቀላሉ ፈልገው የሚረዱበት መፈለጊያ መድረክ።",
+                    s3_d: "የቃላትን መነሻ ስርወ-ቃል (ግሪክና ዕብራይስጥ) እንዲሁም ጥልቅ መንፈሳዊ ፍቺዎችን በቀላሉ ፈልገው የሚረዱበት መፈለጊያ።",
                     s3_m: "<span class='meta-item'>Strong's Numbers</span><span class='meta-item'>ስርወ-ቃል ፍለጋ</span>",
                     s3_b: "መዝገበ-ቃላት ክፈት →",
+                    
                     s4_t: "የመጻሕፍት መደብር (Digital Library)",
-                    s4_d: "ዕቅበተ-እምነት翻 ታሪክ翻 እና ስነ-ምግባር ላይ የሚያተኩሩ ድንቅ መንፈሳዊ መጻሕፍትንና የትርጉም ስራዎችን አውርደው የሚያነቡበት ማከማቻ።",
+                    s4_d: "coming soon",
                     s4_m: "<span class='meta-item'>ኢ-ቡክስ (E-Books)</span><span class='meta-item'>ታሪካዊ ሰነዶች</span>",
                     s4_b: "መደብሩን ጎብኝ →",
+                    
                     footer: "© 2026 ትንሹ የዕምነት ካርታ። በታላቅ ፍቅር የተሰራ።",
                     fontClass: "ethiopic",
                 },
@@ -611,24 +643,33 @@
                     logo: "Tinishu Faith Map",
                     back: "← Back to Main Page",
                     pageTitle: "Services Directory",
-                    pageDesc:
-                        "Select a core service module below to enter directly into the workspace.",
-                    s1_t: "Let's Read Together (Parallel Bible)",
-                    s1_d: "Study and read scriptures by aligning Amharic, Ge'ez, English, and other languages side-by-side for deep comparison.",
+                    pageDesc: "Select a core service module below to enter directly into the workspace.",
+                    
+                    s1_t: "Parallel Bible Reading",
+                    s1_d: "Study and read scriptures by aligning Amharic, Ge'ez, English, and other languages side-by-side.",
                     s1_m: "<span class='meta-item'>4 Languages</span><span class='meta-item'>Comparative Study</span>",
                     s1_b: "Enter Bible Room →",
-                    s2_t: "Church Fathers' Wisdom (Patristics)",
-                    s2_d: "Access a detailed archive of profound spiritual commentaries and insights left by ancient church fathers for every single verse.",
+
+                    s5_t: "Quran Reading Room",
+                    s5_d: "Read Quranic verses in Amharic, Arabic, and other translated texts side-by-side.",
+                    s5_m: "<span class='meta-item'>Arabic & Amharic</span><span class='meta-item'>Translation Study</span>",
+                    s5_b: "Enter Quran Room →",
+                    
+                    s2_t: "Church Fathers' Wisdom",
+                    s2_d: "coming soon",
                     s2_m: "<span class='meta-item'>Patristic Commentary</span><span class='meta-item'>Manuscript Archive</span>",
                     s2_b: "Open Commentaries →",
-                    s3_t: "Word Finder (Lexicon Tool)",
-                    s3_d: "Look up original Greek and Hebrew root words, definitions, and deep biblical meanings effortlessly using our search tool.",
+                    
+                    s3_t: "Word Finder (Lexicon)",
+                    s3_d: "Look up original Greek and Hebrew root words, definitions, and deep meanings effortlessly.",
                     s3_m: "<span class='meta-item'>Strong's Numbers</span><span class='meta-item'>Root Word Search</span>",
                     s3_b: "Open Lexicon →",
-                    s4_t: "Spiritual Bookstore (Digital Library)",
-                    s4_d: "Browse and download enriching spiritual books, apologetics, historical texts, and translated theological works directly.",
+                    
+                    s4_t: "Digital Bookstore",
+                    s4_d: "coming soon",
                     s4_m: "<span class='meta-item'>Digital E-Books</span><span class='meta-item'>Historical Texts</span>",
                     s4_b: "Visit Bookstore →",
+                    
                     footer: "© 2026 Tinishu Faith Map. Crafted with immense love.",
                     fontClass: "",
                 },
@@ -637,22 +678,32 @@
                     back: "← ናብ ቀንዲ ገጽ ተመለስ",
                     pageTitle: "ማውጫ ኣገልግሎታት",
                     pageDesc: "ክጥቀሙሉ እትደልዩ ቀንዲ ክፋል ብመምራጽ ብቐጥታ ናብቲ ተግባር እተዉ።",
-                    s1_t: "ብሓባር ነንብብ (Parallel Bible)",
+                    
+                    s1_t: "መጽሓፍ ቅዱስ (Parallel Bible)",
                     s1_d: "እንግሊዝኛ፣ አማርኛን ትግርኛን ጎን ንጎን ጌርካ ቃላት እናነጻጸርካ ፍጹም ናይ ምንባብን መፅናዕትን ግዜ የሕልፉ።",
                     s1_m: "<span class='meta-item'>4 ቋንቋታት</span><span class='meta-item'>መጽናዕቲ ንጽጽር</span>",
                     s1_b: "ናብ ክፍሊ ምንባብ እቶ →",
+
+                    s5_t: "ቁርኣን (Quran Reading)",
+                    s5_d: "ኣንቀጻት ቁርኣን ብዓረብኛ፣ ኣማርኛን ካልኦት ቋንቋታትን ንምንባብ።",
+                    s5_m: "<span class='meta-item'>ዓረብኛን ኣማርኛን</span><span class='meta-item'>ንጽጽር ትርጉም</span>",
+                    s5_b: "ናብ ቁርኣን ንባብ →",
+                    
                     s2_t: "ትምህርቲ ቅዱሳን ኣቦታት (Patristics)",
-                    s2_d: "ንነፍሲ ወከፍ ጥቕሲ ናይ ጥንቲ ኣቦታት ዝሃብዎ ጥዑም ምስጢርን መብርህን ዝረኽቡሉ ክፍሊ።",
+                    s2_d: "coming soon",
                     s2_m: "<span class='meta-item'>ትርጓሜ ሊቃውንቲ</span><span class='meta-item'>ማሕደር ብራና</span>",
                     s2_b: "ትምህርትታት ኽፈት →",
-                    s3_t: "መፍቲሒ ቃላት (Lexicon Tool)",
+                    
+                    s3_t: "መፍቲሒ ቃላት (Lexicon)",
                     s3_d: "መበቆል ቃላት (ግሪክን እብራይስጥን) ከምኡ እውን ዓሚቝ መንፈሳዊ ትርጉማት ብቐሊሉ ደሊኹም እትርድእሉ መድረኽ።",
                     s3_m: "<span class='meta-item'>Strong's Numbers</span><span class='meta-item'>ምድላይ ስርወ-ቃል</span>",
                     s3_b: "መዝገበ-ቃላት ኽፈት →",
+                    
                     s4_t: "ቤት መጻሕፍቲ (Digital Library)",
-                    s4_d: "ታሪኽ፣ እምነትን ስነ-ምግባርን ዘተኩሩ መንፈሳዊ መጻሕፍትን ናይ ትርጉም ስራሕትን ኣውሪድኩም እተንብቡሉ ማእኸል።",
+                    s4_d: "coming soon",
                     s4_m: "<span class='meta-item'>ኢ-ቡክስ (E-Books)</span><span class='meta-item'>ታሪካዊ ሰነዳት</span>",
                     s4_b: "ድኳን ርአ →",
+                    
                     footer: "© 2026 ንእሽቶ ካርታ እምነት። ብዓቢ ፍቕሪ ዝተሰርሐ።",
                     fontClass: "ethiopic",
                 },
@@ -660,24 +711,33 @@
                     logo: "Kaarta Amantii Tinishuu",
                     back: "← Gara Fuula Duratti Deebi'i",
                     pageTitle: "Tajaajiloota Keenya",
-                    pageDesc:
-                        "Tajaajila fayyadamuu barbaaddan jalaa filachuun kallattiin gara hojiitti deebi'aa.",
-                    s1_t: "Waliin Haa Dubbisnu (Parallel Bible)",
+                    pageDesc: "Tajaajila fayyadamuu barbaaddan jalaa filachuun kallattiin gara hojiitti deebi'aa.",
+                    
+                    s1_t: "Dubbisa Macaafa Qulqulluu",
                     s1_d: "Afaanota adda addaa cinaa cinatti hiriirsuun jechoota wal bira qabanii dubbisuuf isin gargaara.",
                     s1_m: "<span class='meta-item'>Afaan 4</span><span class='meta-item'>Qorannoo Wal bira qabuu</span>",
                     s1_b: "Dubbisuu Eegali →",
-                    s2_t: "Barsiisa Abbootii Durii (Patristics)",
-                    s2_d: "Ibsa gad fageenya qabu kan abbootiin waldaa kristiyaanaa durii caqasa tokko tokkoof kennan argadhaa.",
+
+                    s5_t: "Dubbisa Qur'aanaa",
+                    s5_d: "Aayatoota Qur'aanaa Afaan Arabaa, Amaaraa fi hiikkoo birootiin dubbisuuf.",
+                    s5_m: "<span class='meta-item'>Arabaa fi Amaaraa</span><span class='meta-item'>Qorannoo Hiikaa</span>",
+                    s5_b: "Gara Qur'aanaa Seeni →",
+                    
+                    s2_t: "Barsiisa Abbootii Durii",
+                    s2_d: "coming soon",
                     s2_m: "<span class='meta-item'>Ibsa Abbootii</span><span class='meta-item'>Kuusaa Barreeffamaa</span>",
                     s2_b: "Barsiisa Bani →",
-                    s3_t: "Hiika Jechootaa (Lexicon Tool)",
+                    
+                    s3_t: "Hiika Jechootaa (Lexicon)",
                     s3_d: "Jechoonni afaan Giriikii ykn Ibrootaan hiika qorannoo qaban salphaatti isiniif garsiisa.",
                     s3_m: "<span class='meta-item'>Strong's Numbers</span><span class='meta-item'>Jecha Barbaadi</span>",
                     s3_b: "Hiika Jechaa Bani →",
-                    s4_t: "Kuusaa Kitaabaa (Digital Library)",
-                    s4_d: "Kitaabota hafuuraa fi barreeffamoota seenaa lubbuu keessan sooran kan argattanidha.",
+                    
+                    s4_t: "Kuusaa Kitaabaa Digital",
+                    s4_d: "coming soon",
                     s4_m: "<span class='meta-item'>E-Books Digital</span><span class='meta-item'>Kitaabota Seenaa</span>",
                     s4_b: "Dukaana Daawwadhu →",
+                    
                     footer: "© 2026 Kaarta Amantii Tinishuu. Jaalala guddaan kan hojjetame.",
                     fontClass: "",
                 },
@@ -693,28 +753,34 @@
                 const elementsToUpdate = [
                     { id: "ui-logo", text: data.logo, isHtml: false },
                     { id: "ui-back", text: data.back, isHtml: false },
-                    {
-                        id: "ui-page-title",
-                        text: data.pageTitle,
-                        isHtml: false,
-                    },
+                    { id: "ui-page-title", text: data.pageTitle, isHtml: false },
                     { id: "ui-page-desc", text: data.pageDesc, isHtml: false },
+                    
                     { id: "srv1-title", text: data.s1_t, isHtml: false },
                     { id: "srv1-desc", text: data.s1_d, isHtml: false },
                     { id: "srv1-meta", text: data.s1_m, isHtml: true },
                     { id: "srv1-btn", text: data.s1_b, isHtml: false },
+                    
+                    { id: "srv5-title", text: data.s5_t, isHtml: false },
+                    { id: "srv5-desc", text: data.s5_d, isHtml: false },
+                    { id: "srv5-meta", text: data.s5_m, isHtml: true },
+                    { id: "srv5-btn", text: data.s5_b, isHtml: false },
+                    
                     { id: "srv2-title", text: data.s2_t, isHtml: false },
                     { id: "srv2-desc", text: data.s2_d, isHtml: false },
                     { id: "srv2-meta", text: data.s2_m, isHtml: true },
                     { id: "srv2-btn", text: data.s2_b, isHtml: false },
+                    
                     { id: "srv3-title", text: data.s3_t, isHtml: false },
                     { id: "srv3-desc", text: data.s3_d, isHtml: false },
                     { id: "srv3-meta", text: data.s3_m, isHtml: true },
                     { id: "srv3-btn", text: data.s3_b, isHtml: false },
+                    
                     { id: "srv4-title", text: data.s4_t, isHtml: false },
                     { id: "srv4-desc", text: data.s4_d, isHtml: false },
                     { id: "srv4-meta", text: data.s4_m, isHtml: true },
                     { id: "srv4-btn", text: data.s4_b, isHtml: false },
+                    
                     { id: "ui-footer", text: data.footer, isHtml: false },
                 ];
 
