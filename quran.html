@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> tinishu Faith Map -  ቁርኣን ማውጫ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Wood & Gold Cinematic Theme */
+        :root {
+            --wood-dark: #120a00;
+            --wood-medium: #241402;
+            --wood-light: #3a2205;
+            --gold-bright: #ffd700;
+            --gold-glow: #f0c965;
+            --gold-dark: #b8860b;
+            --text-light: #f7ebe1;
+            --text-muted: #c9b9a5;
+            --glass-bg: rgba(36, 20, 2, 0.55);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(circle at center, var(--wood-light) 0%, var(--wood-dark) 100%);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Style */
+        header {
+            background: linear-gradient(to bottom, #0a0500, rgba(36, 20, 2, 0.95));
+            border-bottom: 2px solid var(--gold-dark);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+            height: 80px;
+            flex-shrink: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border: 2px solid var(--gold-glow);
+            border-radius: 50%;
+            padding: 2px;
+            background: var(--wood-dark);
+        }
+
+        .app-title {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            background: linear-gradient(45deg, var(--gold-bright), var(--gold-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        }
+
+        .subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -2px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            flex: 1;
+            height: calc(100vh - 80px);
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(15, 8, 0, 0.98);
+            border-right: 1px solid rgba(184, 134, 11, 0.4);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: linear-gradient(to bottom, var(--wood-medium), transparent);
+            border-bottom: 1px solid rgba(236, 196, 92, 0.15);
+            flex-shrink: 0;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0d0700;
+            border: 1px solid var(--gold-dark);
+            border-radius: 8px;
+            color: var(--text-light);
+            outline: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--gold-bright);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+        }
+
+        .surah-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+            padding-bottom: 20px;
+        }
+
+        .surah-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+        }
+
+        .surah-item:hover {
+            background: var(--wood-medium);
+            color: var(--gold-bright);
+        }
+
+        .surah-item.active {
+            background: linear-gradient(90deg, rgba(58, 34, 5, 0.6), transparent);
+            border-left: 4px solid var(--gold-bright);
+            color: var(--gold-bright);
+        }
+
+        .surah-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .surah-num {
+            background: linear-gradient(135deg, var(--gold-dark), #100800);
+            color: var(--gold-bright);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 13px;
+            border: 1px solid var(--gold-glow);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* Content Area */
+        .content-area {
+            background: rgba(20, 11, 1, 0.3);
+            padding: 40px;
+            overflow-y: auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            backdrop-filter: blur(4px);
+        }
+
+        .surah-title-card {
+            background: linear-gradient(135deg, var(--wood-medium), #150b01);
+            border: 1px solid var(--gold-dark);
+            border-radius: 14px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .surah-title-card h2 {
+            font-size: 34px;
+            color: var(--gold-bright);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .surah-title-card p {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 15px;
+        }
+
+        .verse-card {
+            background: var(--glass-bg);
+            border-left: 4px solid var(--gold-glow);
+            border-radius: 0 12px 12px 0;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .verse-card:hover {
+            transform: translateX(4px);
+            background: rgba(58, 34, 5, 0.45);
+            border-left-color: var(--gold-bright);
+        }
+
+        .verse-number {
+            color: var(--gold-bright);
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(240, 201, 101, 0.3);
+            padding-bottom: 4px;
+            align-self: flex-start;
+        }
+
+        /* አረብኛ ፅሁፍ ስታይል */
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 32px;
+            color: #fff9e6;
+            text-align: right;
+            direction: rtl;
+            line-height: 2;
+            padding: 10px 0;
+            word-spacing: 2px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .arabic-loading {
+            color: var(--gold-dark);
+            font-style: italic;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        /* አማርኛ ትርጉም ስታይል */
+        .amharic-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-light);
+            text-align: justify;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+        }
+
+        /* Custom Scrollbar */
+        .surah-list::-webkit-scrollbar,
+        .content-area::-webkit-scrollbar {
+            width: 8px;
+        }
+        .surah-list::-webkit-scrollbar-track,
+        .content-area::-webkit-scrollbar-track {
+            background: #0f0800;
+        }
+        .surah-list::-webkit-scrollbar-thumb,
+        .content-area::-webkit-scrollbar-thumb {
+            background: var(--wood-light);
+            border-radius: 4px;
+            border: 1px solid var(--gold-dark);
+        }
+        .surah-list::-webkit-scrollbar-thumb:hover,
+        .content-area::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-dark);
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="pawlos.png" alt="Pawlos Logo" onerror="this.style.display='none'">
+            <div>
+                <div class="app-title">Tinishu Faith Map</div>
+                <span class="subtitle">የቁርኣን ማውጫ</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <input type="text" id="searchSurah" class="search-box" placeholder="ሱራ በስም ወይም በቁጥር ይፈልጉ...">
+            </div>
+            <ul class="surah-list" id="surahList">
+                <li class="surah-item placeholder">በመጫን ላይ...</li>
+            </ul>
+        </aside>
+
+        <main class="content-area" id="contentArea">
+            <div class="surah-title-card">
+                <h2>እንኳን ወደ Faith Map በደህና መጡ</h2>
+                <p>እባክዎ ለማንበብ ከግራ በኩል የሚፈልጉትን ሱራ (ምዕራፍ) ይምረጡ</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // የተስተካከሉ የሱራ ስሞች ዝርዝር (የቃላት ስህተቶች የሌለባቸው)
+        const surahNames = {
+            1: "አል-ፋቲሐህ (መክፈቻ)", 2: "አል-በቀራህ (ላሚቱ)", 3: "ኣሊ-ዒምራን (የዒምራን ቤተሰቦች)",
+            4: "አን-ኒሳእ (ሴቶች)", 5: "አል-ማኢዳህ (ማዕድ)", 6: "አል-አንዓም (ከብቶች)",
+            7: "አል-አዕራፍ (ከፍታዎች)", 8: "አል-አንፋል (ምርኮዎች)", 9: "አት-ተውባህ (ንስሐ)",
+            10: "ዩኑስ", 11: "ሁድ", 12: "ዩሱፍ", 13: "አር-ረዕድ (ነጎድጓድ)", 14: "ኢብራሂም",
+            15: "አል-ሒጅር (የድንጋዩ ሸለቆ)", 16: "አን-ነሕል (ንብ)", 17: "አል-ኢስራእ (የሌሊቱ ጉዞ)",
+            18: "አል-ካህፍ (ዋሻው)", 19: "መርየም", 20: "ጧሀ", 21: "አል-አንቢያእ (ነቢያት)",
+            22: "አል-ሐጅ (ንግደት)", 23: "አል-ሙእሚኑን (አማኞች)", 24: "አን-ኑር (ብርሃን)",
+            25: "አል-ፉርቃን (መለያ)", 26: "አሽ-ሹዐራእ (ገጣሚዎች)", 27: "አን-ነምል (ጉንዳን)",
+            28: "አል-ቀሰስ (ታሪኮች)", 29: "አል-ዐንከቡት (ሸረሪት)", 30: "አር-ሩም (ሮማውያን)",
+            31: "ሉቅማን", 32: "አስ-ሰጅዳህ (ስግደት)", 33: "አል-አሕዛብ (ጭፍሮች)",
+            34: "ሰበእ", 35: "ፋጢር (ፈጣሪ)", 36: "ያሲን", 37: "አስ-ሷፋት (ተሰላፊዎች)",
+            38: "ሷድ", 39: "አዝ-ዙመር (ጭፍሮች)", 40: "ጋፊር (ምሐሪ)", 41: "ፉሲለት (የተብራሩ)",
+            42: "አሽ-ሹራ (ምክር)", 43: "አዝ-ዙኽሩፍ (ጌጥ)", 44: "አድ-ዱኻን (ጢስ)",
+            45: "አል-ጃሢያህ (ተንበርካኪ)", 46: "አል-አሕቃፍ (የአሸዋ ክምሮች)", 47: "ሙሐመድ",
+            48: "አል-ፈትሕ (ድል)", 49: "አል-ሑጁራት (ክፍሎች)", 50: "ቃፍ", 51: "አዝ-ዛሪያት (በታኞች)",
+            52: "አጥ-ጡር (ደብረ ሲና)", 53: "አን-ነጅም (ኮከብ)", 54: "አል-ቀመር (ጨረቃ)",
+            55: "አር-ረሕማን (እጅግ በጣም ሩኅሩህ)", 56: "አል-ዋቂዐህ (ክስተቱ)", 57: "አል-ሐዲድ (ብረት)",
+            58: "አል-ሙጃዲላህ (ተከራካሪዋ)", 59: "አል-ሐሽር (ማሰባሰብ)", 60: "አል-ሙምተሒናህ (ፈታኟ)",
+            61: "አስ-ሶፍ (ሰልፍ)", 62: "አል-ጁሙዐህ (ዓርብ)", 63: "አል-ሙናፊቁን (መናፍቃን)",
+            64: "አት-ተጋቡን (መሸናነፍ)", 65: "አጥ-ጦላቅ (ፍቺ)", 66: "አት-ተሕሪም (እርም ማድረግ)",
+            67: "አል-ሙልክ (ንጉሥ)", 68: "አል-ቀለም (ብዕር)", 69: "አል-ሐቃህ (እውነተኛው ክስተት)",
+            70: "አል-መዓሪጅ (መውጫዎች)", 71: "ኑሕ", 72: "አል-ጂን (ጂን)", 73: "አል-ሙዘሚል (ተጠቅላዩ)",
+            74: "አል-ሙደሢር (ተከናናቢው)", 75: "አል-ቂያማህ (ትንሣኤ)", 76: "አል-ኢንሳን (ሰው)",
+            77: "አል-ሙርሰላት (ተላኪዎች)", 78: "አን-ነበእ (ወሬ)", 79: "አን-ናዚዐት (ነጣቂዎች)",
+            80: "ዐበሰ (ፊቱን አጠቆረ)", 81: "አት-ተክዊር (መጠቅለል)", 82: "አል-ኢንፊጣር (መቀደድ)",
+            83: "አል-ሙጠፊፊን (አጎዳዮች)", 84: "አል-ኢንሽቃቅ (መሰንጠቅ)", 85: "አል-ቡሩጅ (ኮከቦች)",
+            86: "አጥ-ጧሪቅ (የሌሊቱ ኮከብ)", 87: "አል-አዕላ (ከፍተኛው)", 88: "አል-ጋሺያህ (ሸፋኟ)",
+            89: "አል-ፈጅር (ጎህ)", 90: "አል-በለድ (ከተማይቱ)", 91: "አሽ-ሸምስ (ፀሐይ)",
+            92: "አል-ለይል (ሌሊት)", 93: "አድ-ዱሐ (ረፋድ)", 94: "አሽ-ሸርሕ (ማስፋፋት)",
+            95: "አት-ቲን (በለስ)", 96: "አል-ዐለቅ (ደፍ የረጋ ደም)", 97: "አል-ቀድር (ወሰን/ክብር)",
+            98: "አል-በዪናህ (ግልጽ ማስረጃ)", 99: "አዝ-ዘልዘላህ (መንቀጥቀጥ)", 100: "አል-ዐዲያት (ሯጮች)",
+            101: "አል-ቃሪዐህ (አስደንጋዡ ክስተት)", 102: "አት-ተካሡር (ማብዛት)", 103: "አል-ዐስር (ጊዜ)",
+            104: "አል-ሁመዘህ (ሀሜተኛ)", 105: "አል-ፊል (ዝሆን)", 106: "ቁረይሽ",
+            107: "አል-ማዑን (ቁሳቁስ)", 108: "አል-ከውޘር (በጎ ነገሮች)", 109: "አል-ካፊሩን (ከሓዲዎች)",
+            110: "አን-ነስር (እርዳታ)", 111: "አል-መሰድ (የዘንባባ ፋይበር)", 112: "አል-ኢኽላስ (ንፅህና)",
+            113: "አል-ፈለቅ (ጎህ)", 114: "አን-ናስ (ሰዎች)"
+        };
+
+        let quranAmharic = {};
+
+        // 1. የአማርኛውን ፋይል መጫኛ
+        async function loadQuranData() {
+            try {
+                const response = await fetch('am-sadiq-simple.json');
+                quranAmharic = await response.json();
+                buildSidebar();
+            } catch (error) {
+                console.error("ፋይል የማንበብ ስህተት:", error);
+                document.getElementById('surahList').innerHTML = '<li class="surah-item" style="color:red;text-align:center;">የአማርኛውን ፋይል መጫን አልተቻለም!</li>';
+            }
+        }
+
+        // 2. ማውጫ መገንቢያ
+        function buildSidebar() {
+            const listContainer = document.getElementById('surahList');
+            listContainer.innerHTML = '';
+
+            for (let i = 1; i <= 114; i++) {
+                const listItem = document.createElement('li');
+                listItem.className = 'surah-item';
+                listItem.setAttribute('data-id', i);
+                
+                listItem.innerHTML = `
+                    <div class="surah-info">
+                        <div class="surah-num">${i}</div>
+                        <div style="font-weight:600; font-size:15px;">${surahNames[i]}</div>
+                    </div>
+                `;
+
+                listItem.addEventListener('click', () => {
+                    document.querySelectorAll('.surah-item').forEach(el => el.classList.remove('active'));
+                    listItem.classList.add('active');
+                    displaySurah(i);
+                });
+
+                listContainer.appendChild(listItem);
+            }
+        }
+
+        // 3. ሱራውን ከአካባቢው አማርኛ እና ከውጪ አረብኛ ሰርቨር አቀናጅቶ ማሳያ
+        async function displaySurah(surahId) {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = ''; 
+
+            // የራስጌ ካርድ
+            const headerCard = document.createElement('div');
+            headerCard.className = 'surah-title-card';
+            headerCard.innerHTML = `
+                <h2>${surahNames[surahId]}</h2>
+                <p>ምዕራፍ - ${surahId}</p>
+            `;
+            contentArea.appendChild(headerCard);
+
+            // መጀመሪያ የአማርኛውን መዋቅር አውጥቶ ባዶ ካርዶችን መደርደር
+            let verseIndex = 1;
+            let hasVerses = true;
+            const verseCardsMap = {}; // የአረብኛ ጥቅሶችን በኋላ ላይ በቀላሉ ለመወጋት ማከማቻ
+
+            while (hasVerses) {
+                const key = `${surahId}:${verseIndex}`;
+                if (quranAmharic[key]) {
+                    const verseCard = document.createElement('div');
+                    verseCard.className = 'verse-card';
+                    
+                    verseCard.innerHTML = `
+                        <div class="verse-number">አንቀጽ ${verseIndex}</div>
+                        <div class="arabic-text arabic-loading" id="ar-${surahId}-${verseIndex}">አረብኛው ከሰርቨር ላይ በመጫን ላይ...</div>
+                        <div class="amharic-text">${quranAmharic[key].t}</div>
+                    `;
+                    
+                    contentArea.appendChild(verseCard);
+                    verseCardsMap[verseIndex] = document.getElementById(`ar-${surahId}-${verseIndex}`);
+                    verseIndex++;
+                } else {
+                    hasVerses = false;
+                }
+            }
+
+            contentArea.scrollTop = 0;
+
+            // 4. አረብኛውን ከታዋቂው የ Quran.com ሰርቨር (API) መሳብ
+            try {
+                // ለአንድ ሙሉ ሱራ በአንድ ጊዜ ሁሉንም አያት ያመጣል
+                const arabicResponse = await fetch(`https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${surahId}`);
+                const arabicData = await arabicResponse.json();
+                
+                // የመጡትን ጥቅሶች በየካርዱ ላይ መተካት
+                if(arabicData && arabicData.verses) {
+                    arabicData.verses.forEach(v => {
+                        // ቁልፉን ከ "verse_key" (ለምሳሌ "1:1") መለየት
+                        const parts = v.verse_key.split(':');
+                        const vNum = parseInt(parts[1]);
+                        
+                        if(verseCardsMap[vNum]) {
+                            verseCardsMap[vNum].innerHTML = v.text_uthmani;
+                            verseCardsMap[vNum].classList.remove('arabic-loading');
+                        }
+                    });
+                }
+            } catch (apiError) {
+                console.error("የአረብኛ ሰርቨር ስህተት:", apiError);
+                // በሆነ ምክንያት ሰርቨሩ ባይሰራ የተጠቃሚውን ንባብ እንዳያስተጓጉል መልዕክት መተው
+                for (let idx in verseCardsMap) {
+                    verseCardsMap[idx].innerHTML = "⚠️ አረብኛውን ከሰርቨር ላይ መጫን አልተቻለም።";
+                }
+            }
+        }
+
+        // የሱራ መፈለጊያ
+        document.getElementById('searchSurah').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.surah-item');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        window.onload = loadQuranData;
+    </script>
+</body>
+</html>
